@@ -1,0 +1,13 @@
+
+{
+    "mandatory_sections": [
+    "PROFESSIONAL SUMMARY", 
+    "employment history", 
+    "education", "skills", 
+    "LANGUAGES", 
+    "CERTIFICATIONS", 
+    "WORK HISTORY", 
+    "PROJECTS"],
+    "accepted_formats": ["pdf", "docx", "txt"]
+}
+  

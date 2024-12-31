@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ResumeIQ</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 1200px;
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .table-container {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-3 text-center">ResumeIQ</h1>
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="resumes">Upload Resumes</label>
+                <input type="file" name="resumes" class="form-control" multiple required>
+                <small class="form-text text-muted">You can upload multiple resumes.</small>
+            </div>
+
+            <!-- Use a row to arrange fields side by side -->
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="experience_required">Years of Experience Required</label>
+                    <input type="text" name="experience_required" class="form-control" pattern="\d+(\.\d{1,2})?" required>
+                    <small class="form-text text-muted">Please enter a number (e.g., 5 for 5 years).</small>
+                </div>
+                <div class="form-group col-md-8">
+                    <label for="job_description">Job Description (comma separated keywords)</label>
+                    <textarea name="job_description" class="form-control" rows="4" placeholder="e.g., Python, Java, Data Science" required></textarea>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Upload and Evaluate</button>
+            <button type="reset" class="btn btn-secondary ml-3">Clear All</button>
+        </form>
+
+        {% if results %}
+        <div class="table-container">
+            <h2 class="mt-5">Evaluation Results</h2>
+            <div class="mt-3">
+                <!-- Add a container to wrap your table for better alignment -->
+                <div class="table-responsive">
+                    {{ results|safe }}
+                </div>
+            </div>
+        </div>
+        {% elif error %}
+        <div class="alert alert-danger mt-3">
+            {{ error }}
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Optional JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
